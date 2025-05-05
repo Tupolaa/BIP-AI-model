@@ -1,0 +1,61 @@
+# ------------------------------------- AI Assistant (Streamlit) - Multimodal Invoice Chatbot App ------------------------------------- #
+
+
+
+ 1. --------------- AI_Model Versio 2.0 New Implemented Features & Their Purpose ---------------
+
+* File Upload -> Supports both image (.jpg, .jpeg, .png) and PDF documents via st.file_uploader.
+
+* PDF to Image Conversion -> Converts the first page of a PDF to an image using pdf2image, enabling preview and visual Q&A.
+
+* Preview Display -> Displays the uploaded file preview (image or PDF as image) using st.image().
+
+* Chat Memory -> Maintains chat history using st.session_state.messages.
+
+* Reset Chat -> Clears the conversation and uploaded file on button click using st.session_state and st.rerun().
+
+* PDF Generation from Invoice Fields -> Allows extraction of key fields (Service Provider, Customer, Service Description, Invoice Date, Invoice Total) and generate a downloadable PDF summary.
+
+* Improvement when handling the yellow warning 'The use_column_width parameter has been deprecated and will be removed in a future release. Please utilize the use_container_width parameter instead.'
+  by replacing use_column_width with use_container_width due to usage of deprecated parameter.
+
+* CSS Injection for green button style
+
+
+2. ---------------------------- Imported Libraries & Their Purpose -----------------------------
+
+* Streamlit -> import streamlit as st -> Builds the web-based UI for uploading files, chatting, displaying previews, and generating PDFs interactively.
+
+* Hugging Face Hub -> from huggingface_hub import InferenceClient -> Connects to and communicates with vision-language models (like meta-llama/Llama-3.2-11B-Vision-Instruct) hosted on Hugging Face or Novita.
+
+* io -> import io -> Handles in-memory byte streams, used when saving/loading images or temporary files.
+
+* base64 -> import base64 -> Encodes image data into base64 format for inclusion in API requests (used to send image to vision model).
+
+* mimetypes -> import mimetypes	-> Detects file type (e.g. image or PDF) from uploaded files to decide how to process them.
+
+* pdf2image	-> from pdf2image -> import convert_from_bytes	Converts PDFs (uploaded by users) to image format so they can be previewed and used with the vision model.
+
+* Pillow (PIL) -> from PIL import Image -> Handles image operations such as loading, saving, and converting formats. Required for working with pdf2image.
+
+* ReportLab -> from reportlab.lib.pagesizes import A4 / from reportlab.pdfgen import canvas -> Generates downloadable PDF files containing extracted invoice information (Service Provider, Client, Service Description, Invoice Date, Invoice Total).
+
+* tempfile -> import tempfile -> Creates temporary files (used when saving generated PDFs before download).
+
+
+
+3. -------------------- Installed Libraries/Tools in Terminal & Their Purpose --------------------
+
+* pip install streamlit -> Installs the Streamlit web framework.
+
+* pip install huggingface_hub -> Installs client library for calling Hugging Face models.
+
+* pip install pdf2image -> Installs the library to convert PDFs to image format.
+
+* pip install Pillow -> Installs Python Imaging Library to handle images.
+
+* pip install reportlab -> Used to generate PDF files containing structured data (like invoice details).
+
+* pip install pypdf2 -> Used to read and manipulate PDF files (if needed for extracting specific pages or text).
+
+* brew install poppler (macOS) / choco install poppler (Windows via Chocolatey) -> Installs Poppler, which pdf2image needs to actually perform PDF-to-image conversion.
