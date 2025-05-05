@@ -27,7 +27,7 @@ with st.sidebar:
             # Initialize the client using the specified provider
             client = InferenceClient(
                 provider="novita", # <-- Explicitly set the provider here
-                token=hf_api_key
+                token=hf_api_key # Hugging Face Access Token
             )
             # Optional: You could try a basic call specific to the provider to verify authentication
             st.success("Inference client initialized with provider 'novita'.")
