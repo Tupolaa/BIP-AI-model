@@ -23,7 +23,7 @@ st.title("📝 Image + PDF Chatbot 🤖")
 with st.sidebar:
     st.header("🔐 Configuration:")
     
-    hf_api_key = "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"
+    
     st.markdown("That grants access to Model:")
     st.markdown("meta-llama/Llama-3.2-11B-Vision-Instruct.")
     client = None
