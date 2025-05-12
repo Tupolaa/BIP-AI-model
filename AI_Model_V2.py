@@ -22,7 +22,7 @@ st.title("📝 Image + PDF Chatbot 🤖")
 # ------------------------------------------ API Key Input (Sidebar) --------------------------------------- #
 with st.sidebar:
     st.header("🔐 Configuration:")
-    #hf_api_key = st.text_input("Enter your API Access Token:", type="password")
+    
     hf_api_key = "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"
     st.markdown("That grants access to Model:")
     st.markdown("meta-llama/Llama-3.2-11B-Vision-Instruct.")
