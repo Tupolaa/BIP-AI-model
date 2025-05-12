@@ -25,11 +25,9 @@ st.title("📝 Image + PDF Chatbot 🤖")
 
 # ------------------------------------------ API Key Input (Sidebar) --------------------------------------- #
 with st.sidebar:
-    st.header("🔐 Configuration:")
-    
-    st.markdown("That grants access to Model:")
-    st.markdown("meta-llama/Llama-3.2-11B-Vision-Instruct.")
+   
     client = None
+    
     if not hf_api_key:
         st.warning("⚠️ Please enter your API token to continue.")
     else:
@@ -38,7 +36,7 @@ with st.sidebar:
                 model="meta-llama/Llama-3.2-11B-Vision-Instruct",
                 token=hf_api_key
             )
-            st.success("✅ Inference client initialized.")
+            st.success("✅ Smart Assistant is online and ready..")
             st.header("💡 Actions:")
         except Exception as e:
             st.error(f"❌ Failed to initialize Inference client: {e}")
