@@ -30,7 +30,10 @@ with st.sidebar:
         st.warning("⚠️ Please enter your API token to continue.")
     else:
         try:
-            client = InferenceClient(provider="novita", token=hf_api_key)
+            client = InferenceClient(
+                model="meta-llama/Llama-3.2-11B-Vision-Instruct",
+                token=hf_api_key
+            )
             st.success("✅ Inference client initialized.")
             st.header("💡 Actions:")
         except Exception as e:
