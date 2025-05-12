@@ -11,7 +11,11 @@ from reportlab.pdfgen import canvas
 import tempfile
 import json
 import re
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+hf_api_key = os.getenv("hf_api_key")
 # ------------------ Meta Llama (Model Developer) / Novita (API Provider) -> Model To Load ----------------- #
 modelToLoad = "meta-llama/Llama-3.2-11B-Vision-Instruct"
 
@@ -23,7 +27,7 @@ st.title("📝 Image + PDF Chatbot 🤖")
 with st.sidebar:
     st.header("🔐 Configuration:")
     #hf_api_key = st.text_input("Enter your API Access Token:", type="password")
-    hf_api_key = "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"
+    #hf_api_key = "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"
     st.markdown("That grants access to Model:")
     st.markdown("meta-llama/Llama-3.2-11B-Vision-Instruct.")
     client = None
