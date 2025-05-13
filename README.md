@@ -58,11 +58,11 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 
 - [Teemu Tupola](https://github.com/Tupolaa)
 - [Hongqian Li](https://github.com/hongqian-li)
-- [FERNANDO](https://github.com/FE7R7)
+- [Fernando Barreto Rodrigues](https://github.com/FE7R7)
 
 
 ### Marketing/Desing
 
-- Adriana
-- Anabela
-- Aleksander 
+- Adriana Pereira Bastos
+- Anabela Oliveira Araújo
+- Aleksander Sarnatskiy
