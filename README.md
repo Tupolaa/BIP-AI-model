@@ -48,20 +48,20 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 
 ##  👤👤 Creators
 
-### Team Supervisor
+### 🧑‍💼 Team Supervisor
 - [ Mazhar mohsin](https://github.com/mazarbaloch)
 
-### Team Leader 
+### 🧠 Team Leader 
 - [Teemu Tupola](https://github.com/Tupolaa)
 
-### Coding
+### 💻 Coding
 
 - [Teemu Tupola](https://github.com/Tupolaa)
 - [Hongqian Li](https://github.com/hongqian-li)
 - [Fernando Barreto Rodrigues](https://github.com/FE7R7)
 
 
-### Marketing/Desing
+### 💵 Marketing/Desing
 
 - Adriana Pereira Bastos
 - Anabela Oliveira Araújo
@@ -69,7 +69,7 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 
 ---
 
-## Licence
+## 📝 Licence
 
 - This project is licensed under the MIT License. Feel free to use, modify, and distribute.
 
