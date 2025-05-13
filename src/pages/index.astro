@@ -1,0 +1,351 @@
+---
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro"; // Keep the Layout component
+
+// You can add any page-specific variables or data here if needed later
+---
+
+<Layout title="Finsum AI Invoice Processor - Landing">
+    <main>
+        <section class="hero-section">
+            <h1>Finsum AI Intelligent Invoice Processing</h1>
+            <p>
+                Simplify your workflow with our AI-powered invoice extraction
+                and analysis tool. Save time, reduce errors, and focus on what
+                matters most.
+            </p>
+            <a href="/app" class="cta-button">Start Processing Invoices</a>
+        </section>
+
+        <section class="about-section">
+            <h2>About Our Company</h2>
+            <p>
+                We are dedicated to streamlining business operations through
+                innovative AI solutions. Our team has expertise in machine
+                learning, document analysis, and user-friendly interface design.
+                We believe in empowering businesses of all sizes with technology
+                that makes a real difference.
+            </p>
+            <p>
+                Founded in [Year or context], our mission is to [Your Mission
+                Statement]. We are based in [Your Location, e.g., Europe, USA,
+                etc.].
+            </p>
+        </section>
+
+        <section class="features-section">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Fast Extraction</h3>
+                    <p>
+                        Quickly pull data from various invoice formats (PDF,
+                        JPG, PNG).
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3>AI Validation</h3>
+                    <p>
+                        Intelligent checks to ensure data accuracy and
+                        consistency.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3>Easy Integration</h3>
+                    <p>Designed to fit into your existing workflows.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Secure Processing</h3>
+                    <p>
+                        Your data is handled with industry-leading security
+                        measures.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Get In Touch</h2>
+            <p>
+                Have questions or want to learn more about how our AI Invoice
+                Processor can help your business? Reach out to us today.
+            </p>
+            <p>
+                Email: <a href="mailto:info@yourcompany.com"
+                    >info@yourcompany.com</a
+                >
+            </p>
+            <p>Phone: [Your Phone Number, Optional]</p>
+            <p>Address: [Your Address, Optional]</p>
+        </section>
+
+        <section class="mission-section">
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to revolutionize document processing for
+                businesses, big and small, by providing accessible, accurate,
+                and secure AI tools that enhance efficiency and productivity. We
+                strive to be a trusted partner in your digital transformation
+                journey.
+            </p>
+        </section>
+
+        <footer>
+            <p>
+                &copy; {new Date().getFullYear()} [Your Company Name]. All rights
+                reserved.
+            </p>
+        </footer>
+    </main>
+</Layout>
+
+<style>
+    /* --- Astro.build Inspired Dark Theme Palette --- */
+    :root {
+        --color-background: #0a0c1a; /* Deep dark background */
+        --color-card-background: #151a30; /* Slightly lighter for cards/sections */
+        --color-text-base: #f4f4f4; /* Light text */
+        --color-text-muted: #a0a0b3; /* Muted text for descriptions */
+        --color-primary-accent: #612eff; /* Primary purple/blue accent */
+        --color-secondary-accent: #e93c58; /* Secondary pink/red accent */
+        --color-highlight-text: #3ecf8e; /* Greenish highlight (like code blocks) */
+        --color-border: #2c304a; /* Subtle border color */
+
+        --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+
+        --spacing-sm: 1rem;
+        --spacing-md: 2rem;
+        --spacing-lg: 4rem;
+        --spacing-xl: 6rem;
+    }
+
+    /* --- Base Styles --- */
+    body {
+        font-family: var(--font-system);
+        line-height: 1.6;
+        color: var(--color-text-base);
+        background-color: var(--color-background);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Optional: Gradient background for the body or a wrapper */
+    /* body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            145deg,
+            rgba(115, 83, 190, 0.15) 0%,
+            rgba(165, 89, 188, 0.05) 35%,
+            rgba(204, 112, 143, 0) 100%
+        );
+        pointer-events: none;
+        z-index: -1;
+    } */
+
+    main {
+        max-width: 1200px; /* Match astro.build container width feel */
+        margin: 0 auto;
+        padding: var(--spacing-xl) var(--spacing-md); /* More padding top/bottom */
+    }
+
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--color-text-base); /* Default heading color */
+        margin-bottom: var(--spacing-sm);
+        line-height: 1.2;
+        font-weight: 700; /* Often bold */
+    }
+    h1 {
+        font-size: 3.5em;
+    }
+    h2 {
+        font-size: 2.5em;
+        margin-top: var(--spacing-md);
+    }
+    h3 {
+        font-size: 1.7em;
+        margin-top: var(--spacing-md);
+    }
+
+    /* --- Hero Section Styling --- */
+    .hero-section {
+        text-align: center;
+        padding: var(--spacing-lg) 0; /* Padding inside the hero */
+        margin-bottom: var(--spacing-xl); /* More space below the hero */
+    }
+
+    .hero-section h1 {
+        color: var(
+            --color-primary-accent
+        ); /* Primary accent for main heading */
+        font-size: 4em; /* Larger size for impact */
+        margin-bottom: 0.3em;
+        line-height: 1.1;
+    }
+
+    .hero-section p {
+        color: var(--color-text-muted); /* Muted color for hero subtext */
+        font-size: 1.5em; /* Larger font size */
+        margin-bottom: var(--spacing-lg); /* More space below paragraph */
+        max-width: 900px; /* Limit width for readability */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* --- Call to Action Button Styling --- */
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(
+            45deg,
+            var(--color-primary-accent),
+            var(--color-secondary-accent)
+        ); /* Gradient background */
+        color: white;
+        padding: 1em 3em; /* More padding */
+        text-decoration: none;
+        border-radius: 50px; /* Pill shape */
+        font-size: 1.3em;
+        font-weight: 700;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+        border: none;
+        position: relative;
+        overflow: hidden; /* Hide overflow for potential effects */
+    }
+    /* Optional: Add a subtle pseudo-element hover effect */
+    .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1); /* White overlay */
+        transition: left 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px); /* Lift effect */
+        opacity: 0.9; /* Slight opacity change */
+    }
+    .cta-button:hover::before {
+        left: 0; /* Slide overlay on hover */
+    }
+
+    .cta-button:active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* --- General Section Styling --- */
+    .about-section,
+    .contact-section,
+    .mission-section,
+    .features-section {
+        margin: var(--spacing-lg) 0; /* Space between sections */
+        padding: var(--spacing-md);
+        background-color: var(--color-card-background); /* Card background */
+        border-radius: 8px;
+        border: 1px solid var(--color-border); /* Subtle border */
+    }
+
+    .about-section h2,
+    .contact-section h2,
+    .mission-section h2,
+    .features-section h2 {
+        color: var(
+            --color-highlight-text
+        ); /* Highlight color for section headings */
+        text-align: center;
+        margin-bottom: var(--spacing-md);
+        font-size: 2em;
+    }
+
+    .about-section p,
+    .contact-section p,
+    .mission-section p {
+        color: var(--color-text-base); /* Main text color */
+        font-size: 1.1em;
+        margin-bottom: var(--spacing-sm);
+        text-align: left;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* --- Features Grid Styling --- */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        ); /* Responsive grid */
+        gap: var(--spacing-md); /* Space between grid items */
+        margin-top: var(--spacing-md);
+    }
+
+    .feature-item {
+        background-color: var(
+            --color-background
+        ); /* Slightly darker background for feature cards */
+        padding: var(--spacing-md);
+        border-radius: 8px;
+        border: 1px solid var(--color-border);
+        text-align: center;
+    }
+
+    .feature-item h3 {
+        color: var(
+            --color-primary-accent
+        ); /* Accent color for feature titles */
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .feature-item p {
+        color: var(
+            --color-text-muted
+        ); /* Muted text for feature descriptions */
+        font-size: 1em;
+        margin-bottom: 0; /* No margin below last paragraph */
+    }
+
+    /* --- Link Styling within Sections --- */
+    .contact-section a {
+        color: var(--color-link-color); /* Link color */
+        text-decoration: none; /* No underline by default */
+        border-bottom: 1px dotted var(--color-link-color); /* Subtle underline effect */
+        transition: border-bottom-color 0.2s ease;
+    }
+
+    .contact-section a:hover {
+        border-bottom-color: transparent; /* Hide underline on hover */
+        color: var(--color-link-hover-color); /* Lighter color on hover */
+    }
+
+    /* --- Footer Styling --- */
+    footer {
+        text-align: center;
+        margin-top: var(--spacing-lg);
+        padding: var(--spacing-md) 0;
+        color: var(--color-text-muted); /* Muted color for footer text */
+        font-size: 0.9em;
+        border-top: 1px solid var(--color-border); /* Separator line */
+    }
+    footer p {
+        margin: 0; /* Remove default paragraph margin in footer */
+    }
+</style>
