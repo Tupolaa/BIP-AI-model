@@ -139,7 +139,6 @@ def generate_invoice_from_template(summary_text):
 
     try:
         # Get path to current script
-        print("test1")
         current_dir = os.path.dirname(os.path.abspath(__file__))
         template_path = os.path.join(current_dir, "template.docx")
 
@@ -149,24 +148,23 @@ def generate_invoice_from_template(summary_text):
         for paragraph in doc.paragraphs:
             if "{{summary}}" in paragraph.text:
                 paragraph.text = paragraph.text.replace("{{summary}}", summary_text)
-                print("test2")
 
-        # Save modified docx
-        temp_docx = tempfile.NamedTemporaryFile(delete=False, suffix=".docx")
-        doc.save(temp_docx.name)
+        # Save modified DOCX to a temp file
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_docx:
+            doc.save(temp_docx.name)
+            temp_docx_path = temp_docx.name
 
-        # Convert to PDF
-        print("test3")
-        temp_pdf = temp_docx.name.replace(".docx", ".pdf")
-        convert(temp_docx.name, temp_pdf)  # This likely uses COM or another Office-related library
-        print("test4")
+        # Create a separate temp file path for PDF output
+        temp_pdf_path = temp_docx_path.replace(".docx", ".pdf")
 
-        return temp_pdf
-        
+        # Convert DOCX to PDF
+        convert(temp_docx_path, temp_pdf_path)
+
+        return temp_pdf_path
 
     finally:
         pythoncom.CoUninitialize()
-        print("test5")
+
 
 # ----------------------------- Sidebar Button to Generate and Download PDF ----------------------------- #
 with st.sidebar:
@@ -199,11 +197,14 @@ with st.sidebar:
                 )
                 extracted_text = completion.choices[0].message.content
 
+            # Generate PDF and save path
             pdf_path = generate_invoice_from_template(extracted_text)
             st.session_state.generated_pdf_path = pdf_path
 
+            st.success("✅ PDF generated successfully!")
+
         except Exception as e:
-            st.error(f"Failed to extract and generate PDF: {e}")
+            st.error(f"❌ Failed to extract and generate PDF: {e}")
 
     if st.sidebar.button("⚙️ Generate Invoice JSON File", key="gen-json-btn"):
         try:
