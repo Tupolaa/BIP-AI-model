@@ -12,7 +12,12 @@ import tempfile
 import json
 import re
 from dotenv import load_dotenv
+from docx import Document
+from docx2pdf import convert
 import os
+import pythoncom
+from win32com.client import Dispatch
+pythoncom.CoInitialize()
 
 load_dotenv()
 hf_api_key = os.getenv("hf_api_key")
@@ -110,22 +115,56 @@ if uploaded_file is not None:
         st.image(image_bytes, caption=filename, use_container_width=True)
 
 # ------------------------------------------- PDF Summary Generator ------------------------------------------- #
-def generate_invoice_summary_pdf(summary_text):
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    c = canvas.Canvas(temp_file.name, pagesize=A4)
-    width, height = A4
+#  def generate_invoice_summary_pdf(summary_text):
+#     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+#     c = canvas.Canvas(temp_file.name, pagesize=A4)
+#     width, height = A4
 
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(100, height - 80, "Invoice Summary")
+#     c.setFont("Helvetica-Bold", 14)
+#     c.drawString(100, height - 80, "Invoice Summary")
 
-    c.setFont("Helvetica", 12)
-    y = height - 120
-    for line in summary_text.split("\n"):
-        c.drawString(100, y, line.strip())
-        y -= 20
+#     c.setFont("Helvetica", 12)
+#     y = height - 120
+#     for line in summary_text.split("\n"):
+#         c.drawString(100, y, line.strip())
+#         y -= 20
 
-    c.save()
-    return temp_file.name
+#     c.save()
+#     return temp_file.name 
+    
+
+
+def generate_invoice_from_template(summary_text):
+    pythoncom.CoInitialize()  # Initialize COM before using COM-based libraries
+
+    try:
+        # Get path to current script
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        template_path = os.path.join(current_dir, "template.docx")
+
+        doc = Document(template_path)
+
+        # Replace placeholder
+        for paragraph in doc.paragraphs:
+            if "{{summary}}" in paragraph.text:
+                paragraph.text = paragraph.text.replace("{{summary}}", summary_text)
+
+        # Save modified DOCX to a temp file
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_docx:
+            doc.save(temp_docx.name)
+            temp_docx_path = temp_docx.name
+
+        # Create a separate temp file path for PDF output
+        temp_pdf_path = temp_docx_path.replace(".docx", ".pdf")
+
+        # Convert DOCX to PDF
+        convert(temp_docx_path, temp_pdf_path)
+
+        return temp_pdf_path
+
+    finally:
+        pythoncom.CoUninitialize()
+
 
 # ----------------------------- Sidebar Button to Generate and Download PDF ----------------------------- #
 with st.sidebar:
@@ -158,11 +197,14 @@ with st.sidebar:
                 )
                 extracted_text = completion.choices[0].message.content
 
-            pdf_path = generate_invoice_summary_pdf(extracted_text)
+            # Generate PDF and save path
+            pdf_path = generate_invoice_from_template(extracted_text)
             st.session_state.generated_pdf_path = pdf_path
 
+            st.success("✅ PDF generated successfully!")
+
         except Exception as e:
-            st.error(f"Failed to extract and generate PDF: {e}")
+            st.error(f"❌ Failed to extract and generate PDF: {e}")
 
     if st.sidebar.button("⚙️ Generate Invoice JSON File", key="gen-json-btn"):
         try:
