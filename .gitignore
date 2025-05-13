@@ -7,6 +7,9 @@
 .DS_Store
 
 
+
+
+
 # build output
 dist/
 
@@ -30,4 +33,6 @@ pnpm-debug.log*
 .DS_Store
 
 # jetbrains setting folder
+
 .idea/
+
