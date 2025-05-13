@@ -66,3 +66,13 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 - Adriana Pereira Bastos
 - Anabela Oliveira Araújo
 - Aleksander Sarnatskiy
+
+---
+
+## Licence
+
+- This project is licensed under the MIT License. Feel free to use, modify, and distribute.
+
+## 🙋 Contact
+Developed by a students in the BIP Smart Everything program.
+For feedback, improvements or collaborations, please reach out via GitHub for issues or your preferred contact method.
