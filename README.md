@@ -2,8 +2,8 @@
 
 A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vision-Instruct** to extract structured data from invoices in image or PDF format. It supports intelligent field extraction, invoice summarization, and export to **PDF** and **JSON** formats.
 
-- ⚙️ Built in **BIP Smart Everything program**
-# https://run-eu.eu/2025/03/01/bip-smart-everything-connecting-artificial-intelligence-tools-with-business-ideas/
+- ⚙️ Built in [**BIP Smart Everything program**](https://run-eu.eu/2025/03/01/bip-smart-everything-connecting-artificial-intelligence-tools-with-business-ideas/)
+
 
 ---
 
