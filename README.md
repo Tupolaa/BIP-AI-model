@@ -61,7 +61,7 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 - [Fernando Barreto Rodrigues](https://github.com/FE7R7)
 
 
-### 💵 Marketing/Desing
+### 💵 Marketing/Design
 
 - Adriana Pereira Bastos
 - Anabela Oliveira Araújo
