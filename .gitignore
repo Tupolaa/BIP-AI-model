@@ -1,6 +1,12 @@
 .idea/
 .vscode/
 .DS_Store
+.env
+.idea/
+.vscode/
+.DS_Store
+
+
 
 
 
@@ -27,4 +33,6 @@ pnpm-debug.log*
 .DS_Store
 
 # jetbrains setting folder
+
 .idea/
+
