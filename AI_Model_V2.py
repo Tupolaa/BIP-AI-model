@@ -17,7 +17,7 @@ from docx2pdf import convert
 import os
 import pythoncom
 from win32com.client import Dispatch
-pythoncom.CoInitialize()
+
 
 load_dotenv()
 hf_api_key = os.getenv("hf_api_key")
@@ -115,24 +115,6 @@ if uploaded_file is not None:
         st.image(image_bytes, caption=filename, use_container_width=True)
 
 # ------------------------------------------- PDF Summary Generator ------------------------------------------- #
-#  def generate_invoice_summary_pdf(summary_text):
-#     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-#     c = canvas.Canvas(temp_file.name, pagesize=A4)
-#     width, height = A4
-
-#     c.setFont("Helvetica-Bold", 14)
-#     c.drawString(100, height - 80, "Invoice Summary")
-
-#     c.setFont("Helvetica", 12)
-#     y = height - 120
-#     for line in summary_text.split("\n"):
-#         c.drawString(100, y, line.strip())
-#         y -= 20
-
-#     c.save()
-#     return temp_file.name 
-    
-
 
 def generate_invoice_from_template(summary_text):
     pythoncom.CoInitialize()  # Initialize COM before using COM-based libraries
