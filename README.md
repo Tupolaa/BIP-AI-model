@@ -75,4 +75,4 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 
 ## 🙋 Contact
 Developed by a students in the BIP Smart Everything program.
-For feedback, improvements or collaborations, please reach out via GitHub for issues or your preferred contact method.
+For feedback, improvements or collaborations, please reach out via GitHub.
