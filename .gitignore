@@ -6,15 +6,13 @@
 .vscode/
 .DS_Store
 
-
-
-
-
 # build output
 dist/
 
 # generated types
 .astro/
+astro.config.mjs
+
 
 # dependencies
 node_modules/

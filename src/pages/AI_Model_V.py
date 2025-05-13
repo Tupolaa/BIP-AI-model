@@ -199,7 +199,7 @@ with st.sidebar:
                         "content": [
                             {
                                 "type": "text",
-                                "text": "Extract all key invoice fields (provider, customer, items, totals) from this image. Return a VALID JSON object only, without nesting individual address lines or using sets. All fields must have a flat structure and values as strings, arrays, or numbers."
+                                "text": "Extract all key invoice fields (provider, customer, items, totals) from this image. Respond with a VALID JSON object **only**, with no explanation, no markdown formatting, and no text before or after. All fields must have a flat structure with string, array, or number values. The output must be directly parseable by a JSON parser."
                             },
                             {
                                 "type": "image_url",
