@@ -59,3 +59,5 @@
 * pip install pypdf2 -> Used to read and manipulate PDF files (if needed for extracting specific pages or text).
 
 * brew install poppler (macOS) / choco install poppler (Windows via Chocolatey) -> Installs Poppler, which pdf2image needs to actually perform PDF-to-image conversion.
+
+* pip install python-docx docx2pdf -> Installs word docx libraries to convert docx to pdf and to modify docx documents
