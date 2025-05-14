@@ -12,7 +12,7 @@ astro.config.mjs
 
 
 # dependencies
-/frontend_astro/node_modules/
+node_modules/
 
 # logs
 npm-debug.log*
