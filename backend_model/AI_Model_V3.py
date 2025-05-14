@@ -291,7 +291,7 @@ if uploaded_file is not None:
         image_bytes_content = uploaded_file.read() # Read bytes
         try:
             image = Image.open(io.BytesIO(image_bytes_content)) # Open image from bytes
-            st.image(image, caption=f"Uploaded Image: {file_name}", use_column_width=True)
+            st.image(image, caption=f"Uploaded Image: {file_name}", use_container_width=True)
             st.session_state.uploaded_image_bytes = image_bytes_content # Store original bytes
             st.session_state.uploaded_image_type = file_type
             st.session_state.pdf_images = [] # Clear any previous PDF images
@@ -311,7 +311,7 @@ if uploaded_file is not None:
                     st.session_state.pdf_images.append(buffered.getvalue())
 
                 if st.session_state.pdf_images:
-                    st.image(st.session_state.pdf_images[0], caption=f"First Page of Uploaded PDF: {file_name}", use_column_width=True)
+                    st.image(st.session_state.pdf_images[0], caption=f"First Page of Uploaded PDF: {file_name}", use_container_width=True)
                     # For processing, typically use the first page or allow selection
                     st.session_state.uploaded_image_bytes = st.session_state.pdf_images[0]
                     st.session_state.uploaded_image_type = "image/jpeg"
