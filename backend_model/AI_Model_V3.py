@@ -329,7 +329,7 @@ def generate_invoice_from_template(summary_text):
             c = canvas.Canvas(content_pdf.name, pagesize=A4)
             width, height = A4
             margin_x = 50
-            margin_y = height - 250  # Adjusted to move content below logo/title
+            margin_y = height - 300  # Adjusted to move content below logo/title
 
             text = c.beginText(margin_x, margin_y)
             text.setFont("Helvetica", 12)
@@ -343,7 +343,7 @@ def generate_invoice_from_template(summary_text):
 
         # Step 2: Overlay this text on the background template
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        template_path = os.path.join(current_dir, "pdf_template.pdf")
+        template_path = os.path.join(current_dir, "pdf_template1.pdf")
 
         template_reader = PdfReader(template_path)
         content_reader = PdfReader(content_pdf.name)

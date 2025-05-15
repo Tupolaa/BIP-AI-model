@@ -79,6 +79,6 @@ For feedback, improvements or collaborations, please reach out via GitHub.
 
 ## Project Structure
 
-- `/frontend_astro` – Contains the Astro-based frontend
-- `/backend_model` – Your backend server (if applicable)
-- `/general_files` – Documentation, License, Readme
+- `/frontend_astro` – Contains the Astro-based frontend for the websites.
+- `/backend_model` – Contains different versions of the prototype that handles the document invoice parsing (AI_Model_V3.py is the latest version)
+- `/general_files` – More detailed documents about the program and installations/libraries used.
