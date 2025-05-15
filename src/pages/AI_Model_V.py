@@ -15,8 +15,8 @@ from dotenv import load_dotenv
 from docx import Document
 from docx2pdf import convert
 import os
-import pythoncom # type: ignore
-from win32com.client import Dispatch # type: ignore
+import pythoncom
+from win32com.client import Dispatch
 
 
 load_dotenv()

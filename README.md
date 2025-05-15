@@ -76,9 +76,3 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 ## 🙋 Contact
 Developed by a students in the BIP Smart Everything program.
 For feedback, improvements or collaborations, please reach out via GitHub.
-
-## Project Structure
-
-- `/frontend_astro` – Contains the Astro-based frontend
-- `/backend_model` – Your backend server (if applicable)
-- `/general_files` – Documentation, License, Readme
