@@ -193,41 +193,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # -------------------------------------------- Helper Functions -------------------------------------------- #
-def display_logo(width=40, height=40, container_class_suffix=""):
-    """Displays the Finsum AI logo."""
-    import uuid # For unique gradient IDs if multiple SVGs are on the page
-    paint0_id = f"paint0_linear_{uuid.uuid4().hex}"
-    paint1_id = f"paint1_linear_{uuid.uuid4().hex}"
-    paint2_id = f"paint2_linear_{uuid.uuid4().hex}"
-
-    logo_svg = f"""
-    <svg width="{width}" height="{height}" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 0C8.96 0 0 8.96 0 20C0 31.04 8.96 40 20 40C31.04 40 40 31.04 40 20C40 8.96 31.04 0 20 0ZM20 36C11.16 36 4 28.84 4 20C4 11.16 11.16 4 20 4C28.84 4 36 11.16 36 20C36 28.84 28.84 36 20 36Z" fill="url(#{paint0_id})"/>
-        <path d="M20 8C13.36 8 8 13.36 8 20C8 26.64 13.36 32 20 32C26.64 32 32 26.64 32 20C32 13.36 26.64 8 20 8ZM20 28C15.58 28 12 24.42 12 20C12 15.58 15.58 12 20 12C24.42 12 28 15.58 28 20C28 24.42 24.42 28 20 28Z" fill="url(#{paint1_id})"/>
-        <path d="M20 16C17.8 16 16 17.8 16 20C16 22.2 17.8 24 20 24C22.2 24 24 22.2 24 20C24 17.8 22.2 16 20 16Z" fill="url(#{paint2_id})"/>
-        <defs>
-            <linearGradient id="{paint0_id}" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#612EFF"/>
-                <stop offset="1" stop-color="#E93C58"/>
-            </linearGradient>
-            <linearGradient id="{paint1_id}" x1="20" y1="8" x2="20" y2="32" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#612EFF"/>
-                <stop offset="1" stop-color="#E93C58"/>
-            </linearGradient>
-            <linearGradient id="{paint2_id}" x1="20" y1="16" x2="20" y2="24" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#612EFF"/>
-                <stop offset="1" stop-color="#E93C58"/>
-            </linearGradient>
-        </defs>
-    </svg>
-    """
-    st.markdown(f"""
-    <div class="logo-container {container_class_suffix}">
-        {logo_svg}
-    </div>
-    """, unsafe_allow_html=True)
-
-# Add logo and title
+def display_logo(image_path="C:\\Users\\teemu\\OneDrive\\Työpöytä\\vuosi2\\BIP_AI\\BIP-AI-model\\frontend_astro\\public\\logo.png", width=150):
+    """Displays the Finsum AI logo from an image file."""
+    st.image(image_path, width=width)
+    
 display_logo()
 st.title("Finsum AI Invoice Processor")
 
