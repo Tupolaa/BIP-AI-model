@@ -1,63 +1,71 @@
-# ------------------------------------- AI Assistant (Streamlit) - Multimodal Invoice Chatbot App ------------------------------------- #
+------------------------- AI_Model Version 3.0 - Features & Libraries Used -------------------------
 
+📤 1. File Upload (PDF or Image)
 
+Feature: Users can upload .jpg, .jpeg, .png, or .pdf invoice files.
+Libraries:
+• streamlit → st.file_uploader
+• mimetypes → Used to determine file type
+🖼️ 2. PDF to Image Conversion
 
- 1. --------------- AI_Model Versio 2.0 New Implemented Features & Their Purpose ---------------
+Feature: Automatically converts the first page of uploaded PDFs into high-resolution images for preview and analysis.
+Libraries:
+• pdf2image → convert_from_bytes
+• pillow (PIL) → Image
+• poppler → Required backend for pdf2image (via brew/choco)
+👁️ 3. File Preview Display
 
-* File Upload -> Supports both image (.jpg, .jpeg, .png) and PDF documents via st.file_uploader.
+Feature: Displays uploaded image or converted PDF page to the user.
+Libraries:
+• streamlit → st.image
+• pillow → Image
+💬 4. Chat Memory (Conversation History)
 
-* PDF to Image Conversion -> Converts the first page of a PDF to an image using pdf2image, enabling preview and visual Q&A.
+Feature: Stores chat messages between the user and AI model persistently across messages.
+Libraries:
+• streamlit → st.session_state
+🔄 5. Reset Chat
 
-* Preview Display -> Displays the uploaded file preview (image or PDF as image) using st.image().
+Feature: Clears conversation history and uploaded file using a button.
+Libraries:
+• streamlit → st.button, st.rerun
+🧠 6. Multimodal Invoice Understanding
 
-* Chat Memory -> Maintains chat history using st.session_state.messages.
+Feature: Sends images or PDFs to Meta LLaMA 3 Vision-Instruct to extract fields or answer questions.
+Libraries:
+• huggingface_hub → InferenceClient
+• base64 → Encodes images for API
+• io → In-memory data buffers
+• Meta LLaMA 3.2 Vision-Instruct (via Hugging Face)
+📑 7. PDF Summary Generation
 
-* Reset Chat -> Clears the conversation and uploaded file on button click using st.session_state and st.rerun().
+Feature: Generates downloadable PDF files containing extracted invoice fields (e.g., service provider, client, total).
+Libraries:
+• reportlab → canvas, A4
+• tempfile → Temporary PDF file generation
+🧾 8. Structured JSON Output
 
-* PDF Generation from Invoice Fields -> Allows extraction of key fields (Service Provider, Customer, Service Description, Invoice Date, Invoice Total) and generate a downloadable PDF summary.
+Feature: Converts extracted invoice data to downloadable JSON format.
+Libraries:
+• json → (implicitly used if converting structured results to JSON format)
+🧠 9. DOCX Creation & Conversion to PDF
 
-* Improvement when handling the yellow warning 'The use_column_width parameter has been deprecated and will be removed in a future release. Please utilize the use_container_width parameter instead.'
-  by replacing use_column_width with use_container_width due to usage of deprecated parameter.
+Feature: Create Word (.docx) documents and convert them to PDF if needed.
+Libraries:
+• python-docx → Create or edit Word docs
+• docx2pdf → Convert Word to PDF
+🔐 10. Environment Variable Management
 
-* CSS Injection for green button style
+Feature: Securely load API keys or config using environment variables.
+Libraries:
+• python-dotenv → load_dotenv
+⚠️ 11. Deprecated Parameter Fix
 
+Feature: Replaced deprecated use_column_width with use_container_width in Streamlit.
+Libraries:
+• streamlit
+🎨 12. Custom Button Styling (Green Buttons)
 
-2. ---------------------------- Imported Libraries & Their Purpose -----------------------------
-
-* Streamlit -> import streamlit as st -> Builds the web-based UI for uploading files, chatting, displaying previews, and generating PDFs interactively.
-
-* Hugging Face Hub -> from huggingface_hub import InferenceClient -> Connects to and communicates with vision-language models (like meta-llama/Llama-3.2-11B-Vision-Instruct) hosted on Hugging Face or Novita.
-
-* io -> import io -> Handles in-memory byte streams, used when saving/loading images or temporary files.
-
-* base64 -> import base64 -> Encodes image data into base64 format for inclusion in API requests (used to send image to vision model).
-
-* mimetypes -> import mimetypes	-> Detects file type (e.g. image or PDF) from uploaded files to decide how to process them.
-
-* pdf2image	-> from pdf2image -> import convert_from_bytes	Converts PDFs (uploaded by users) to image format so they can be previewed and used with the vision model.
-
-* Pillow (PIL) -> from PIL import Image -> Handles image operations such as loading, saving, and converting formats. Required for working with pdf2image.
-
-* ReportLab -> from reportlab.lib.pagesizes import A4 / from reportlab.pdfgen import canvas -> Generates downloadable PDF files containing extracted invoice information (Service Provider, Client, Service Description, Invoice Date, Invoice Total).
-
-* tempfile -> import tempfile -> Creates temporary files (used when saving generated PDFs before download).
-
-
-
-3. -------------------- Installed Libraries/Tools in Terminal & Their Purpose --------------------
-
-* pip install streamlit -> Installs the Streamlit web framework.
-
-* pip install huggingface_hub -> Installs client library for calling Hugging Face models.
-
-* pip install pdf2image -> Installs the library to convert PDFs to image format.
-
-* pip install Pillow -> Installs Python Imaging Library to handle images.
-
-* pip install reportlab -> Used to generate PDF files containing structured data (like invoice details).
-
-* pip install pypdf2 -> Used to read and manipulate PDF files (if needed for extracting specific pages or text).
-
-* brew install poppler (macOS) / choco install poppler (Windows via Chocolatey) -> Installs Poppler, which pdf2image needs to actually perform PDF-to-image conversion.
-
-* pip install python-docx docx2pdf -> Installs word docx libraries to convert docx to pdf and to modify docx documents
+Feature: Custom CSS injection for UI appearance.
+Libraries:
+• streamlit → st.markdown with HTML/CSS
