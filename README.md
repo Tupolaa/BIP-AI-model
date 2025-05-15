@@ -26,15 +26,18 @@ A smart Streamlit web application that leverages the power of **Meta LLaMA 3 Vis
 
 ## 🧰 Tech Stack
 
-| Tool | Description |
-|------|-------------|
-| [Streamlit](https://streamlit.io) | Web UI framework |
-| [Hugging Face Hub](https://huggingface.co/inference-endpoints) | API for multimodal LLM |
-| [pdf2image](https://pypi.org/project/pdf2image/) | Convert PDF pages to images |
-| [python-docx](https://python-docx.readthedocs.io/) | Edit DOCX templates |
-| [docx2pdf](https://pypi.org/project/docx2pdf/) | Convert DOCX to PDF |
-| [OpenAI LLM-compatible API](https://huggingface.co/meta-llama) | Meta’s LLaMA 3.2 11B Vision-Instruct |
-| [pythoncom + win32com](https://pypi.org/project/pywin32/) | COM automation for Windows (used for Office conversion) |
+| Tool / Library | Description |
+|----------------|-------------|
+| [Streamlit](https://streamlit.io) | Web UI framework for building interactive apps |
+| [Hugging Face Inference Endpoints](https://huggingface.co/inference-endpoints) | Run multimodal LLMs (e.g., LLaMA 3) via API |
+| [pdf2image](https://pypi.org/project/pdf2image/) | Convert PDF pages to high-resolution images |
+| [PyPDF2](https://pypi.org/project/PyPDF2/) | Read, split, and merge PDF files |
+| [Pillow (PIL)](https://python-pillow.org/) | Image processing library for Python |
+| [ReportLab](https://www.reportlab.com/opensource/) | Create PDF documents with custom layout |
+| [python-docx](https://python-docx.readthedocs.io/) | Create and edit Word (.docx) documents |
+| [docx2pdf](https://pypi.org/project/docx2pdf/) | Convert Word documents (.docx) to PDF |
+| [python-dotenv](https://pypi.org/project/python-dotenv/) | Manage environment variables using `.env` files |
+| [Meta LLaMA 3.2 Vision-Instruct](https://huggingface.co/meta-llama) | Multimodal LLM for document and image understanding |
 
 - More of the imported/installed libraries can be found in the AI_Model_V2_Documentation.txt file
 ---
