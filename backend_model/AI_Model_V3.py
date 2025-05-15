@@ -24,8 +24,212 @@ hf_api_key = os.getenv("hf_api_key")
 modelToLoad = "meta-llama/Llama-3.2-11B-Vision-Instruct"
 
 # ------------------------------------------- Page Configuration ------------------------------------------- #
-st.set_page_config(page_title="Multimodal Chatbot", layout="wide")
-st.title("📝 Image + PDF Chatbot 🤖")
+st.set_page_config(page_title="Finsum AI - Invoice Processor", layout="wide", page_icon=":robot_face:")
+
+# Add custom CSS styles
+# Note: Directly styling Streamlit auto-generated classes (e.g., .st-emotion-cache-xxxxxx) can break with Streamlit updates.
+# A more robust method is to use Streamlit's theme configuration (config.toml) or wrap components in custom divs for styling.
+st.markdown("""
+<style>
+    /* --- Astro.build Inspired Dark Theme Palette --- */
+    :root {
+        --color-background: #0a0c1a; /* Deep dark background */
+        --color-card-background: #151a30; /* Slightly lighter for cards/sections */
+        --color-text-base: #f4f4f4; /* Light text */
+        --color-text-muted: #a0a0b3; /* Muted text for descriptions */
+        --color-primary-accent: #612eff; /* Primary purple/blue accent */
+        --color-secondary-accent: #e93c58; /* Secondary pink/red accent */
+        --color-highlight-text: #3ecf8e; /* Greenish highlight (like code blocks) */
+        --color-border: #2c304a; /* Subtle border color */
+    }
+
+    /* Base styles */
+    .stApp {
+        background-color: var(--color-background);
+        color: var(--color-text-base);
+    }
+
+    /* Custom font for title */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+    /* Title styling */
+    h1 {
+        color: var(--color-primary-accent) !important;
+        font-size: 2.5em !important;
+        margin-bottom: 0.5em !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Logo styling */
+    .logo-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .logo-container-sidebar .logo-text { /* Example for sidebar specific styling if needed */
+        font-size: 1.3rem; /* Slightly smaller for sidebar */
+    }
+
+
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-left: 0.5rem;
+        background: linear-gradient(45deg, var(--color-primary-accent), var(--color-secondary-accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Sidebar styling - BEWARE: .st-emotion-cache-6qob1r is an auto-generated class and might change */
+    .st-emotion-cache-6qob1r { /* This targets the sidebar main block, Streamlit might change this class */
+        background-color: var(--color-card-background) !important;
+        border-right: 1px solid var(--color-border) !important;
+    }
+    /* A more robust way for sidebar background would be via config.toml:
+       [theme]
+       secondaryBackgroundColor="#151a30"
+    */
+
+    /* Sidebar section divider */
+    .sidebar-section-divider { /* Renamed for clarity */
+        margin: 1.5rem 0;
+        padding: 0.1rem 0; /* Make it a thin line */
+        border-top: 1px solid var(--color-border);
+    }
+
+    /* Button styling */
+    .stButton>button {
+        background: linear-gradient(45deg, var(--color-primary-accent), var(--color-secondary-accent)) !important;
+        color: white !important;
+        border-radius: 50px !important;
+        padding: 0.5em 1.5em !important;
+        font-weight: 700 !important;
+        transition: transform 0.2s ease, opacity 0.2s ease !important;
+        border: none !important;
+    }
+
+    .stButton>button:hover {
+        transform: translateY(-3px) !important;
+        opacity: 0.9 !important;
+    }
+    .stButton>button:disabled {
+        background: var(--color-text-muted) !important;
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }
+
+
+    /* File uploader styling */
+    .stFileUploader {
+        background-color: var(--color-card-background) !important;
+        border-radius: 8px !important;
+        padding: 1em !important;
+        border: 1px solid var(--color-border) !important;
+    }
+
+    /* Chat message styling */
+    .stChatMessage {
+        background-color: var(--color-card-background) !important;
+        border-radius: 8px !important;
+        padding: 1em !important;
+        margin-bottom: 1em !important;
+        border: 1px solid var(--color-border) !important;
+    }
+
+    /* Custom avatar styling - Note: Streamlit's avatar param takes emoji or URL. This CSS won't directly style emoji avatars. */
+    .user-avatar {
+        background-color: #612eff !important;
+    }
+
+    .assistant-avatar {
+        background-color: #e93c58 !important;
+    }
+
+    /* Chat input styling */
+    .stTextInput>div>div>input {
+        background-color: var(--color-card-background) !important;
+        color: var(--color-text-base) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+        padding: 0.5em 1em !important;
+    }
+
+    /* Warning/error message styling */
+    .stAlert {
+        background-color: var(--color-card-background) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+    }
+
+    /* Success message styling */
+    .stAlert [data-testid="stMarkdownContainer"] { /* Targets markdown within success alerts */
+        color: var(--color-highlight-text) !important;
+    }
+
+    /* Spinner styling */
+    .stSpinner>div {
+        color: var(--color-primary-accent) !important;
+    }
+
+    /* Slider styling */
+    .stSlider>div>div>div>div {
+        background-color: var(--color-primary-accent) !important;
+    }
+
+    /* Download button styling */
+    .stDownloadButton>button { /* Targets download button specifically */
+        background: linear-gradient(45deg, var(--color-primary-accent), var(--color-secondary-accent)) !important;
+        color: white !important;
+        border-radius: 50px !important;
+        padding: 0.5em 1.5em !important;
+        font-weight: 700 !important;
+    }
+    .stDownloadButton>button:hover {
+        transform: translateY(-3px) !important;
+        opacity: 0.9 !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------------------------------- Helper Functions -------------------------------------------- #
+def display_logo(width=40, height=40, container_class_suffix=""):
+    """Displays the Finsum AI logo."""
+    import uuid # For unique gradient IDs if multiple SVGs are on the page
+    paint0_id = f"paint0_linear_{uuid.uuid4().hex}"
+    paint1_id = f"paint1_linear_{uuid.uuid4().hex}"
+    paint2_id = f"paint2_linear_{uuid.uuid4().hex}"
+
+    logo_svg = f"""
+    <svg width="{width}" height="{height}" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 0C8.96 0 0 8.96 0 20C0 31.04 8.96 40 20 40C31.04 40 40 31.04 40 20C40 8.96 31.04 0 20 0ZM20 36C11.16 36 4 28.84 4 20C4 11.16 11.16 4 20 4C28.84 4 36 11.16 36 20C36 28.84 28.84 36 20 36Z" fill="url(#{paint0_id})"/>
+        <path d="M20 8C13.36 8 8 13.36 8 20C8 26.64 13.36 32 20 32C26.64 32 32 26.64 32 20C32 13.36 26.64 8 20 8ZM20 28C15.58 28 12 24.42 12 20C12 15.58 15.58 12 20 12C24.42 12 28 15.58 28 20C28 24.42 24.42 28 20 28Z" fill="url(#{paint1_id})"/>
+        <path d="M20 16C17.8 16 16 17.8 16 20C16 22.2 17.8 24 20 24C22.2 24 24 22.2 24 20C24 17.8 22.2 16 20 16Z" fill="url(#{paint2_id})"/>
+        <defs>
+            <linearGradient id="{paint0_id}" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#612EFF"/>
+                <stop offset="1" stop-color="#E93C58"/>
+            </linearGradient>
+            <linearGradient id="{paint1_id}" x1="20" y1="8" x2="20" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#612EFF"/>
+                <stop offset="1" stop-color="#E93C58"/>
+            </linearGradient>
+            <linearGradient id="{paint2_id}" x1="20" y1="16" x2="20" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#612EFF"/>
+                <stop offset="1" stop-color="#E93C58"/>
+            </linearGradient>
+        </defs>
+    </svg>
+    """
+    st.markdown(f"""
+    <div class="logo-container {container_class_suffix}">
+        {logo_svg}
+    </div>
+    """, unsafe_allow_html=True)
+
+# Add logo and title
+display_logo()
+st.title("Finsum AI Invoice Processor")
 
 # ------------------------------------------ API Key Input (Sidebar) --------------------------------------- #
 with st.sidebar:
